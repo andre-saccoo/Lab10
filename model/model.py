@@ -9,9 +9,7 @@ class Model:
 
     def costruisci_grafo(self, threshold):
         """
-        Costruisce il grafo (self.G) inserendo tutti gli Hub (i nodi) presenti e filtrando le Tratte con
-        guadagno medio per spedizione >= threshold (euro)
-        """
+        Costruisce il grafo (self.G) inserendo tutti gli Hub (i nodi) presenti e filtrando le Tratte con guadagno medio per spedizione >= threshold (euro) """
         # TODO
 
     def get_num_edges(self):
