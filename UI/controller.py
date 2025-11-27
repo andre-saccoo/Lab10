@@ -30,6 +30,6 @@ class Controller:
                     nome_partenza=hub.nome
                 if tratta[1]== hub.id:
                     nome_arrivo=hub.nome
-            self._view.lista_visualizzazione.controls.append(ft.Text(nome_partenza,nome_arrivo, tratta["weight"]))
+            self._view.lista_visualizzazione.controls.append(ft.Text(nome_partenza,nome_arrivo,tratta))
             self._view.page.update()
 

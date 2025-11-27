@@ -7,7 +7,7 @@ class Tratta:
     guadagno_medio: float
 
     def __str__(self):
-        return f"{self.nome} ({self.stato})"
+        return f"{self.id_hub_A} ({self.id_hub_B})"
 
     def __hash__(self):
-        return hash(self.id)
+        return hash(self.id_hub_A)
