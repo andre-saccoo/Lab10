@@ -1,7 +1,6 @@
 import flet as ft
 from UI.view import View
-from model.model import Model
-
+from Model.model import Model
 
 class Controller:
     def __init__(self, view: View, model: Model):
@@ -16,5 +15,21 @@ class Controller:
         * Numero di Tratte
         * Lista di Tratte che superano il costo indicato come soglia
         """
-        # TODO
+
+        self._view.lista_visualizzazione.clean()
+        grafo=self._model.costruisci_grafo(float(self._view.guadagno_medio_minimo.value))
+        tratte = grafo.edges()
+        self._view.lista_visualizzazione.controls.append(ft.Text(self._model.get_num_edges())) #stampo il numero di tratte
+        self._view.lista_visualizzazione.controls.append(ft.Text(self._model.get_num_edges()))
+        nome_partenza=''
+        nome_arrivo=''
+        for tratta in tratte:
+            for hub in grafo.nodes():
+                print(hub)
+                if tratta[0]== hub.id:
+                    nome_partenza=hub.nome
+                if tratta[1]== hub.id:
+                    nome_arrivo=hub.nome
+            self._view.lista_visualizzazione.controls.append(ft.Text(nome_partenza,nome_arrivo, tratta["weight"]))
+            self._view.page.update()
 
