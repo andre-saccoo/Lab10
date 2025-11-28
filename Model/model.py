@@ -48,5 +48,5 @@ class Model:
         Restituisce tutte le Tratte (gli edges) con i corrispondenti pesi
         :return: gli edges del grafo con gli attributi (il weight)
         """
-        # TODO
+        return self._edges
 
