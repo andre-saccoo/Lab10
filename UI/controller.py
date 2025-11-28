@@ -19,17 +19,8 @@ class Controller:
         self._view.lista_visualizzazione.clean()
         grafo=self._model.costruisci_grafo(float(self._view.guadagno_medio_minimo.value))
         tratte = grafo.edges()
-        self._view.lista_visualizzazione.controls.append(ft.Text(self._model.get_num_edges())) #stampo il numero di tratte
-        self._view.lista_visualizzazione.controls.append(ft.Text(self._model.get_num_edges()))
-        nome_partenza=''
-        nome_arrivo=''
+        self._view.lista_visualizzazione.controls.append(ft.Row(controls=[ft.Text("numero di edge:"),ft.Text(str(self._model.get_num_edges()))]))
+        self._view.lista_visualizzazione.controls.append(ft.Row(controls=[ft.Text("numero di nodi:"),ft.Text(str(self._model.get_num_nodes()))]))
         for tratta in tratte:
-            for hub in grafo.nodes():
-                print(hub)
-                if tratta[0]== hub.id:
-                    nome_partenza=hub.nome
-                if tratta[1]== hub.id:
-                    nome_arrivo=hub.nome
-            self._view.lista_visualizzazione.controls.append(ft.Text(nome_partenza,nome_arrivo,tratta))
+            self._view.lista_visualizzazione.controls.append(ft.Text(tratta))
             self._view.page.update()
-
