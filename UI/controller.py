@@ -18,9 +18,39 @@ class Controller:
 
         self._view.lista_visualizzazione.clean()
         grafo=self._model.costruisci_grafo(float(self._view.guadagno_medio_minimo.value))
-        tratte = grafo.edges()
+        tratte = grafo.edges( data=True )
         self._view.lista_visualizzazione.controls.append(ft.Row(controls=[ft.Text("numero di edge:"),ft.Text(str(self._model.get_num_edges()))]))
         self._view.lista_visualizzazione.controls.append(ft.Row(controls=[ft.Text("numero di nodi:"),ft.Text(str(self._model.get_num_nodes()))]))
-        for tratta in tratte:
-            self._view.lista_visualizzazione.controls.append(ft.Text(tratta))
-            self._view.page.update()
+
+        '''
+            STAMPA PER RIGHE NORMALE
+            for partenza,arrivo,guadagno in tratte:
+            guadagno=guadagno["weight"]
+            stampa = f"{partenza.nome}  |  {arrivo.nome}  |  {guadagno}"
+            self._view.lista_visualizzazione.controls.append(ft.Text(stampa))
+            self._view.page.update()'''
+
+        #formattazione in tabella
+        rows = []
+        for partenza, arrivo, data in tratte:
+            peso = data["weight"]
+            rows.append(
+                ft.DataRow(
+                    cells=[
+                        ft.DataCell(ft.Text(partenza.nome)),
+                        ft.DataCell(ft.Text(arrivo.nome)),
+                        ft.DataCell(ft.Text(str(peso))),
+                    ]
+                )
+            )
+
+        table = ft.DataTable(
+            columns=[
+                ft.DataColumn(ft.Text("Partenza")),
+                ft.DataColumn(ft.Text("Arrivo")),
+                ft.DataColumn(ft.Text("Guadagno")),
+            ],
+            rows=rows
+        )
+        self._view.lista_visualizzazione.controls.append(table)
+        self._view.page.update()

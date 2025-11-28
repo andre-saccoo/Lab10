@@ -23,18 +23,12 @@ class Model:
                 self.G.add_edge( hub_A, hub_B,weight=oggetto_tratta.guadagno_medio)
         return self.G
 
-
-
     def get_num_edges(self):
         """
         Restituisce il numero di Tratte (edges) del grafo
         :return: numero di edges del grafo
         """
         return self.G.number_of_edges()
-
-
-
-
 
     def get_num_nodes(self):
         """
@@ -49,4 +43,5 @@ class Model:
         :return: gli edges del grafo con gli attributi (il weight)
         """
         return self._edges
+
 
